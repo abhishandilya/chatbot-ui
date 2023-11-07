@@ -29,10 +29,10 @@ import Spinner from '../Spinner';
 import { ChatInput } from './ChatInput';
 import { ChatLoader } from './ChatLoader';
 import { ErrorMessageDiv } from './ErrorMessageDiv';
+import { MemoizedChatMessage } from './MemoizedChatMessage';
 import { ModelSelect } from './ModelSelect';
 import { SystemPrompt } from './SystemPrompt';
 import { TemperatureSlider } from './Temperature';
-import { MemoizedChatMessage } from './MemoizedChatMessage';
 
 interface Props {
   stopConversationRef: MutableRefObject<boolean>;
@@ -405,36 +405,9 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                         <Spinner size="16px" className="mx-auto" />
                       </div>
                     ) : (
-                      'Chatbot UI'
+                      'OCPP AI'
                     )}
                   </div>
-
-                  {models.length > 0 && (
-                    <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
-                      <ModelSelect />
-
-                      <SystemPrompt
-                        conversation={selectedConversation}
-                        prompts={prompts}
-                        onChangePrompt={(prompt) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'prompt',
-                            value: prompt,
-                          })
-                        }
-                      />
-
-                      <TemperatureSlider
-                        label={t('Temperature')}
-                        onChangeTemperature={(temperature) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'temperature',
-                            value: temperature,
-                          })
-                        }
-                      />
-                    </div>
-                  )}
                 </div>
               </>
             ) : (
